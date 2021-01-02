@@ -1,6 +1,8 @@
 package cn.juejin.netty.netty.serialize;
 
 import cn.juejin.netty.netty.serialize.impl.JSONSerializer;
+import lombok.Data;
+import lombok.Getter;
 
 /**
  * @author pengfei.zhao
@@ -14,7 +16,7 @@ public interface Serializer {
      * 序列化算法
      * @return
      */
-    byte getSerializerAlgorithm();
+    byte getSerializerAlogrithm();
 
     /**
      * Java 对象转成二进制

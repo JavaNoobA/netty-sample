@@ -1,4 +1,4 @@
-package cn.juejin.netty.netty.protocol.command;
+package cn.juejin.netty.netty.protocol;
 
 import lombok.Data;
 

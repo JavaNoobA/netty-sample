@@ -10,7 +10,7 @@ import com.alibaba.fastjson.JSON;
  */
 public class JSONSerializer implements Serializer {
     @Override
-    public byte getSerializerAlgorithm() {
+    public byte getSerializerAlogrithm() {
         return SerializerAlogrithm.JSON;
     }
 
