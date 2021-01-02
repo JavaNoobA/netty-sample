@@ -4,6 +4,7 @@ import cn.juejin.netty.netty.protocol.Packet;
 import cn.juejin.netty.netty.protocol.PacketCodeC;
 import cn.juejin.netty.netty.protocol.request.LoginRequestPacket;
 import cn.juejin.netty.netty.protocol.response.LoginResponsePacket;
+import cn.juejin.netty.netty.protocol.response.MessageResponsePacket;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -44,6 +45,8 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
             } else {
                 System.out.println(new Date() + ": 客户端登录失败，原因：" + loginResponsePacket.getReason());
             }
-        }
+        } else if (packet instanceof MessageResponsePacket) {
+            MessageResponsePacket messageResponsePacket = (MessageResponsePacket) packet;
+            System.out.println(new Date() + ": 收到服务端的消息: " + messageResponsePacket.getMessage());        }
     }
 }
