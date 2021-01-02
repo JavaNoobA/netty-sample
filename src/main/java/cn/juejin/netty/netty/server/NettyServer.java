@@ -1,4 +1,4 @@
-package cn.juejin.netty.netty;
+package cn.juejin.netty.netty.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -40,13 +40,7 @@ public class NettyServer {
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
                     protected void initChannel(NioSocketChannel ch) {
-                        ch.pipeline().addLast(new StringDecoder());
-                        ch.pipeline().addLast(new SimpleChannelInboundHandler<String>() {
-                            @Override
-                            protected void channelRead0(ChannelHandlerContext ctx, String msg) {
-                                System.out.println(msg);
-                            }
-                        });
+                        ch.pipeline().addLast(new FirstServerHandler());
                     }
                 });
 
