@@ -31,20 +31,20 @@ public class PacketCodeC {
         serializerMap.put(serializer.getSerializerAlogrithm(), serializer);
     }
 
-    public ByteBuf encode(Packet packet, ByteBufAllocator byteBufAllocator) {
-        ByteBuf byteBuf = byteBufAllocator.DEFAULT.ioBuffer();
+    public ByteBuf encode(Packet packet, ByteBuf byteBuf) {
+        ByteBuf buf = byteBuf.alloc().ioBuffer();
         // 序列化对象
         byte[] bytes = Serializer.DEFAULT.serialize(packet);
 
         // 实际编码过程
-        byteBuf.writeInt(MAGIC_NUMBER);
-        byteBuf.writeByte(packet.getVersion());
-        byteBuf.writeByte(Serializer.DEFAULT.getSerializerAlogrithm());
-        byteBuf.writeByte(packet.getCommand());
-        byteBuf.writeInt(bytes.length);
-        byteBuf.writeBytes(bytes);
+        buf.writeInt(MAGIC_NUMBER);
+        buf.writeByte(packet.getVersion());
+        buf.writeByte(Serializer.DEFAULT.getSerializerAlogrithm());
+        buf.writeByte(packet.getCommand());
+        buf.writeInt(bytes.length);
+        buf.writeBytes(bytes);
 
-        return byteBuf;
+        return buf;
     }
 
     public Packet decode(ByteBuf byteBuf) {

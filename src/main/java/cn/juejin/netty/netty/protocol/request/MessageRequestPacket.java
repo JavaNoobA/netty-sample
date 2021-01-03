@@ -11,6 +11,13 @@ import lombok.Data;
 @Data
 public class MessageRequestPacket extends Packet {
     private String message;
+    private String toUserId;
+    private String fromUserName;
+
+    public MessageRequestPacket(String fromUserName, String message) {
+        this.fromUserName = fromUserName;
+        this.message = message;
+    }
 
     @Override
     public Byte getCommand() {

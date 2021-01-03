@@ -1,5 +1,6 @@
 package cn.juejin.netty.netty.attr;
 
+import cn.juejin.netty.netty.session.Session;
 import io.netty.util.AttributeKey;
 
 /**
@@ -9,4 +10,6 @@ import io.netty.util.AttributeKey;
 public interface Attributes {
 
     AttributeKey<Boolean> LOGIN = AttributeKey.newInstance("login");
+
+    AttributeKey<Session> SESSION = AttributeKey.newInstance("session");
 }

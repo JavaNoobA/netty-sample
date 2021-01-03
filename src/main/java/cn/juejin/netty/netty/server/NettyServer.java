@@ -1,11 +1,14 @@
 package cn.juejin.netty.netty.server;
 
+import cn.juejin.netty.netty.codec.PacketDecoder;
+import cn.juejin.netty.netty.codec.PacketEncoder;
+import cn.juejin.netty.netty.server.handler.LoginRequestHandler;
+import cn.juejin.netty.netty.server.handler.MessageRequestHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.string.StringDecoder;
 import io.netty.util.AttributeKey;
 
 /**
@@ -40,7 +43,10 @@ public class NettyServer {
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
                     protected void initChannel(NioSocketChannel ch) {
-                        ch.pipeline().addLast(new ServerHandler());
+                        ch.pipeline().addLast(new PacketDecoder());
+                        ch.pipeline().addLast(new PacketEncoder());
+                        ch.pipeline().addLast(new LoginRequestHandler());
+                        ch.pipeline().addLast(new MessageRequestHandler());
                     }
                 });
 
